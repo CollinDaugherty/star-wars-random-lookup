@@ -1,16 +1,19 @@
 import React from "react";
 
+function randomIdGen(min, max) {
+  return Math.floor(Math.random() * (max - min) + min);
+}
+
 class Card extends React.Component {
   constructor() {
     super();
     this.state = {
-      planet: [],
-      id: "61"
+      planet: []
     };
   }
 
   componentDidMount() {
-    fetch(`https://swapi.co/api/planets/${this.state.id}`)
+    fetch(`https://swapi.co/api/planets/${randomIdGen(1, 61)}`)
       .then(results => {
         return results.json();
       })
