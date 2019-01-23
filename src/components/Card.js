@@ -1,19 +1,34 @@
 import React from "react";
 
-function randomIdGen(min, max) {
-  return Math.floor(Math.random() * (max - min) + min);
-}
-
 class Card extends React.Component {
   constructor() {
     super();
     this.state = {
-      planet: []
+      planet: [],
+      id: Math.floor(Math.random() * (61 - 1) + 1)
     };
+    this.randomIdGen = this.randomIdGen.bind(this);
+  }
+
+  randomIdGen() {
+    let num = Math.floor(Math.random() * (61 - 1) + 1);
+    this.setState(function() {
+      return { id: num };
+    });
   }
 
   componentDidMount() {
-    fetch(`https://swapi.co/api/planets/${randomIdGen(1, 61)}`)
+    fetch(`https://swapi.co/api/planets/${this.state.id}`)
+      .then(results => {
+        return results.json();
+      })
+      .then(planet => {
+        this.setState({ planet: planet });
+      });
+  }
+
+  componentDidUpdate() {
+    fetch(`https://swapi.co/api/planets/${this.state.id}`)
       .then(results => {
         return results.json();
       })
@@ -45,6 +60,7 @@ class Card extends React.Component {
         <p>
           <strong>Population:</strong> {planet.population}
         </p>
+        <button onClick={this.randomIdGen.bind(this)}>New Planet</button>
       </div>
     );
   }
