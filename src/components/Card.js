@@ -8,6 +8,7 @@ class Card extends React.Component {
       id: Math.floor(Math.random() * (61 - 1) + 1)
     };
     this.randomIdGen = this.randomIdGen.bind(this);
+    this.fetchPlanets = this.fetchPlanets.bind(this);
   }
 
   randomIdGen() {
@@ -17,7 +18,7 @@ class Card extends React.Component {
     });
   }
 
-  componentDidMount() {
+  fetchPlanets() {
     fetch(`https://swapi.co/api/planets/${this.state.id}`)
       .then(results => {
         return results.json();
@@ -27,14 +28,12 @@ class Card extends React.Component {
       });
   }
 
+  componentDidMount() {
+    this.fetchPlanets();
+  }
+
   componentDidUpdate() {
-    fetch(`https://swapi.co/api/planets/${this.state.id}`)
-      .then(results => {
-        return results.json();
-      })
-      .then(planet => {
-        this.setState({ planet: planet });
-      });
+    this.fetchPlanets();
   }
 
   render() {
@@ -60,7 +59,7 @@ class Card extends React.Component {
         <p>
           <strong>Population:</strong> {planet.population}
         </p>
-        <button onClick={this.randomIdGen.bind(this)}>New Planet</button>
+        <button onClick={this.randomIdGen}>New Planet</button>
       </div>
     );
   }
