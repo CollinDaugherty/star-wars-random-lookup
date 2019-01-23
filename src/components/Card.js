@@ -1,4 +1,14 @@
 import React from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCircleNotch,
+  faUndo,
+  faSyncAlt,
+  faRuler,
+  faCloudSun,
+  faMountain,
+  faUsers
+} from "@fortawesome/free-solid-svg-icons";
 
 class Card extends React.Component {
   constructor() {
@@ -39,29 +49,60 @@ class Card extends React.Component {
   render() {
     const { planet } = this.state;
     return !planet.name ? (
-      <h1>Finding Planet...</h1>
-    ) : (
       <div>
-        <h1>{planet.name}</h1>
-        <p>
-          <strong>Rotation Period:</strong> {planet.rotation_period}
-        </p>
-        <p>
-          <strong>Orbital Period:</strong> {planet.orbital_period}
-        </p>
-        <p>
-          <strong>Diameter:</strong> {planet.diameter}
-        </p>
-        <p>
-          <strong>Climate:</strong> {planet.climate}
-        </p>
-        <p>
-          <strong>Terrain:</strong> {planet.terrain}
-        </p>
-        <p>
-          <strong>Population:</strong> {planet.population}
-        </p>
-        <button onClick={this.randomIdGen}>New Planet</button>
+        <h1 className="title has-text-centered has-text-light">
+          Finding Planet <FontAwesomeIcon icon={faCircleNotch} spin size="xs" />
+        </h1>
+        <progress className="progress is-medium is-warning" max="100">
+          15%
+        </progress>
+      </div>
+    ) : (
+      <div className="card">
+        <div className="card-content">
+          <h1 className="title has-text-centered">{planet.name}</h1>
+
+          <div className="box is-shadowless is-radiusless">
+            <p className="has-background-white-ter">
+              <FontAwesomeIcon icon={faUndo} fixedWidth />
+              <strong> Rotation Period:</strong>{" "}
+              <span className="is-pulled-right">{planet.rotation_period}</span>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faSyncAlt} fixedWidth />
+              <strong> Orbital Period:</strong>{" "}
+              <span className="is-pulled-right">{planet.orbital_period}</span>
+            </p>
+            <p className="has-background-white-ter">
+              <FontAwesomeIcon icon={faRuler} fixedWidth />
+              <strong> Diameter:</strong>{" "}
+              <span className="is-pulled-right">{planet.diameter}</span>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faCloudSun} fixedWidth />
+              <strong> Climate:</strong>{" "}
+              <span className="is-pulled-right">{planet.climate}</span>
+            </p>
+            <p className="has-background-white-ter">
+              <FontAwesomeIcon icon={faMountain} fixedWidth />
+              <strong> Terrain:</strong>{" "}
+              <span className="is-pulled-right">{planet.terrain}</span>
+            </p>
+            <p>
+              <FontAwesomeIcon icon={faUsers} fixedWidth />
+              <strong> Population:</strong>{" "}
+              <span className="is-pulled-right">{planet.population}</span>
+            </p>
+          </div>
+
+          <hr />
+          <button
+            className="button is-warning is-fullwidth"
+            onClick={this.randomIdGen}
+          >
+            New Planet
+          </button>
+        </div>
       </div>
     );
   }

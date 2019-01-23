@@ -1,3 +1,4 @@
+html,
 body {
   margin: 0;
   padding: 0;
@@ -6,9 +7,27 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: HSL(0, 0%, 21%);
+  height: 100% !important;
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+p {
+  padding: 5px 10px !important;
+}
+
+svg {
+  color: hsl(0, 0%, 48%) !important;
+  padding-right: 2px;
+  margin-right: 3px;
+}
+
+.title svg {
+  color: white !important;
+  padding: 0;
+  margin: 0;
 }
