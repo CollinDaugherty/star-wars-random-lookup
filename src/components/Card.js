@@ -1,6 +1,7 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faExternalLinkAlt,
   faCircleNotch,
   faUndo,
   faSyncAlt,
@@ -48,10 +49,11 @@ class Card extends React.Component {
 
   render() {
     const { planet } = this.state;
+    const name = planet.name;
     return !planet.name ? (
       <div>
         <h1 className="title has-text-centered has-text-light">
-          Finding Planet <FontAwesomeIcon icon={faCircleNotch} spin size="xs" />
+          Finding Planet..
         </h1>
         <progress className="progress is-medium is-warning" max="100">
           15%
@@ -60,7 +62,12 @@ class Card extends React.Component {
     ) : (
       <div className="card">
         <div className="card-content">
-          <h1 className="title has-text-centered">{planet.name}</h1>
+          <h1 className="title has-text-centered">
+            <a href={"https://starwars.fandom.com/wiki/" + name}>
+              {planet.name}
+            </a>
+            <FontAwesomeIcon icon={faExternalLinkAlt} fixedWidth size="xs" />
+          </h1>
 
           <div className="box is-shadowless is-radiusless">
             <p className="has-background-white-ter">
