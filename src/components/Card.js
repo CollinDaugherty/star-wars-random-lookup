@@ -38,7 +38,9 @@ class Card extends React.Component {
 
   render() {
     const { planet } = this.state;
-    return (
+    return !planet.name ? (
+      <h1>Finding Planet...</h1>
+    ) : (
       <div>
         <h1>{planet.name}</h1>
         <p>
