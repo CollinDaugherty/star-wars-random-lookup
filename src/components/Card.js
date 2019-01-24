@@ -42,10 +42,6 @@ class Card extends React.Component {
     this.fetchPlanets();
   }
 
-  componentDidUpdate() {
-    this.fetchPlanets();
-  }
-
   render() {
     const { planet } = this.state;
     const name = planet.name;
@@ -104,7 +100,10 @@ class Card extends React.Component {
           <hr />
           <button
             className="button is-warning is-fullwidth"
-            onClick={this.randomIdGen}
+            onClick={event => {
+              this.randomIdGen();
+              this.fetchPlanets();
+            }}
           >
             New Planet
           </button>
